@@ -8,6 +8,7 @@ $aui-slider-handle-size: unit(6) !default;
 $aui-slider-handle-offset: $aui-slider-handle-size / 2;
 $aui-slider-track-size: 2px;
 $aui-slider-color-text: $aui-color-gray20 !default;
+$aui-slider-color-disabled: $aui-color-gray40 !default;
 $aui-slider-color-track: $aui-color-gray80 !default;
 $aui-slider-color-track-active: $aui-color-black !default;
 $aui-slider-color-thumb: $aui-color-white !default;
@@ -19,9 +20,20 @@ $aui-slider-color-thumb-border-hover: $aui-slider-color-track-active !default;
   padding: 0;
   min-height: $aui-slider-handle-size;
   color: $aui-slider-color-text;
+  display: flex;
+  flex-direction: column;
 
-  &__output {
+  &__label {
+    order: -2;
+    font-size: rem(12);
+    color: $aui-slider-color-disabled;
+    margin-bottom: 1rem;
+  }
+
+  &__rangeOutput {
+    order: -1;
     position: relative;
+    align-self: center;
     font-size: modular-scale(-1);
   }
 
@@ -33,7 +45,7 @@ $aui-slider-color-thumb-border-hover: $aui-slider-color-track-active !default;
   &__target,
   &__target * {
     -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: $aui-color-black;
     touch-action: none;
     user-select: none;
     box-sizing: border-box;
@@ -154,6 +166,15 @@ $aui-slider-color-thumb-border-hover: $aui-slider-color-track-active !default;
     cursor: pointer;
   }
 
+  &.aui-slider--output &__origin::before{
+    position: absolute;
+    top: -35px;
+    transform: translateX(-50%);
+    font-size: modular-scale(-1);
+    display: block;
+    content: attr(data-before);
+  }
+
   &:not(.is-disabled) &__handle:hover {
     border-color: $aui-slider-color-thumb-border-hover;
   }
@@ -187,6 +208,12 @@ $aui-slider-color-thumb-border-hover: $aui-slider-color-track-active !default;
   &__value-sub {
     color: #ccc;
     font-size: 10px;
+  }
+
+  &__range {
+    display: flex;
+    justify-content: space-between;
+    font-size: rem(12);
   }
 
   // Markings
@@ -280,6 +307,15 @@ $aui-slider-color-thumb-border-hover: $aui-slider-color-track-active !default;
     right: 120%;
   }
 
+  /**
+   * Variants
+   */
+
+  &--output {
+    .aui-slider__label {
+      margin-bottom: 2rem;
+    }
+  }
 
   /**
    * States
@@ -287,8 +323,17 @@ $aui-slider-color-thumb-border-hover: $aui-slider-color-track-active !default;
 
   // Disabled state
   &.is-disabled {
-    opacity: $aui-field-disabled-opacity;
+    //opacity: $aui-field-disabled-opacity;
     cursor: not-allowed;
+
+    .aui-slider__connect::after {
+      background-color: $aui-color-gray70;
+    }
+
+
+    .aui-slider__target::after {
+      background-color: $aui-color-gray90;
+    }
 
     .aui-slider__handle,
     .aui-slider__draggable {

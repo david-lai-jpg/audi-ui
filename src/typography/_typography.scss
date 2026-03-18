@@ -15,8 +15,13 @@ body {
   &-4,
   &-5 {
     font-family: $aui-font-extended;
+    font-variation-settings: $aui-font-extended-width;
     font-weight: $aui-font-weight-normal;
     letter-spacing: -0.015em;
+
+    &--bold {
+      font-weight: $aui-font-weight-bold;
+    }
   }
 
   &-6 {
@@ -27,6 +32,10 @@ body {
     @include aui-responsive-type(8, 1.1);
     font-weight: $aui-font-weight-bold;
     color: $aui-color-black;
+
+    &--normal {
+      font-weight: $aui-font-weight-normal;
+    }
   }
 
   .aui-color-text-light &-1 {
@@ -52,6 +61,10 @@ body {
   &-6 {
     @include aui-responsive-type(0, 1.5);
     font-weight: $aui-font-weight-bold;
+
+    &--normal {
+      font-weight: $aui-font-weight-normal;
+    }
   }
 }
 
@@ -87,7 +100,7 @@ body {
 
 .aui-textlink {
   padding-bottom: 0.06125em;
-  border-bottom: 1px solid rgba(#000, 0.3);
+  border-bottom: 1px solid $aui-color-gray50;
   color: inherit;
   font-weight: $aui-font-weight-normal;
   transition: color 0.3s linear, border 0.3s linear;

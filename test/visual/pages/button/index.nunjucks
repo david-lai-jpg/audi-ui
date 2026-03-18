@@ -4,7 +4,7 @@
 
 {% block main %}
 
-  <section class="test-section" id="button">
+  {# <section class="test-section" id="button">
     {{ section.header('Button') }}
     <div class="test-section__panel">
       {% include 'button/snippets/button.html' %}
@@ -13,7 +13,7 @@
       <h3 class="test-section__headline">Disabled state</h3>
       {% include 'button/snippets/button-disabled.html' %}
     </div>
-  </section>
+  </section> #}
 
   <section class="test-section" id="button-text">
     {{ section.header('Button text style') }}
@@ -79,7 +79,7 @@
   </section>
 
   <section class="test-section" id="button-icon">
-    {{ section.header('Button icon style with small system icon close') }}
+    {{ section.header('Button icon style with small system icon') }}
     <div class="test-section__panel">
       {% include 'button/snippets/button-icon.html' %}
       <h3 class="test-section__headline">Disabled state</h3>
@@ -88,7 +88,7 @@
   </section>
 
   <section class="test-section" id="button-icon-large">
-    {{ section.header('Button icon style with large system icon close') }}
+    {{ section.header('Button icon style with large system icon') }}
     <div class="test-section__panel">
       {% include 'button/snippets/button-icon-large.html' %}
       <h3 class="test-section__headline">Disabled state</h3>
@@ -108,22 +108,22 @@
     </div>
   </section>
 
-  <section class="test-section" id="sepcial-examples">
+  {# <section class="test-section" id="sepcial-examples">
     {{ section.header('Special examples like multiline buttons') }}
     <div class="test-section__panel">
       <div>
         <button class="aui-button aui-button--text aui-js-response" type="button">
-          <span class="aui-button__text">Text button<br>second line</span>
+          <span class="aui-button__text">Text button</span>
         </button>
       </div>
       <div class="leader-4">
         <button class="aui-button aui-button--primary aui-js-response" type="button">
-          <span class="aui-button__text">Primary button<br>second line</span>
+          <span class="aui-button__text">Primary button</span>
         </button>
       </div>
       <div class="leader-4">
         <button class="aui-button aui-button--secondary aui-js-response" type="button">
-          <span class="aui-button__text">Secondary button<br>second line</span>
+          <span class="aui-button__text">Secondary button</span>
         </button>
       </div>
       <div class="leader-4">
@@ -132,14 +132,14 @@
             <svg class="audiicon">
               <use xlink:href="#audiicon-search-small"></use>
             </svg>
-            <span class="aui-button__text">Primary button<br>second line</span>
+            <span class="aui-button__text">Primary button</span>
           </span>
         </button>
       </div>
       <div class="leader-4">
         <button class="aui-button aui-button--secondary aui-js-response" type="button">
           <span class="aui-button__text-icon">
-            <span class="aui-button__text">Secondary button<br>second line</span>
+            <span class="aui-button__text">Secondary button</span>
             <svg class="audiicon">
               <use xlink:href="#audiicon-erase-small"></use>
             </svg>
@@ -147,6 +147,6 @@
         </button>
       </div>
     </div>
-  </section>
+  </section> #}
 
 {% endblock %}

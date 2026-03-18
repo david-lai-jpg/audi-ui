@@ -4,12 +4,12 @@ $aui-dropdown-font-size: 1rem !default;
 $aui-dropdown-option-box-width: 1.5em !default;
 $aui-dropdown-option-tick-size: .75em !default;
 $aui-dropdown-color: $aui-color-dark !default;
-$aui-dropdown-secondary-color: rgba(#000, 0.5) !default;
-$aui-dropdown-border: rgba(#000, 0.3) !default;
-$aui-dropdown-hover-border: rgba(#000, 0.8) !default;
-$aui-dropdown-focus-border: rgba(#000, 0.8) !default;
-$aui-dropdown-dirty-border: rgba(#000, 0.8) !default;
-$aui-dropdown-valid-tick-color: rgba(#000, 0.6) !default;
+$aui-dropdown-secondary-color: $aui-color-gray40 !default;
+$aui-dropdown-border: $aui-color-gray50 !default;
+$aui-dropdown-hover-border: $aui-color-black !default;
+$aui-dropdown-focus-border: $aui-color-black !default;
+$aui-dropdown-dirty-border: $aui-color-black !default;
+$aui-dropdown-valid-tick-color: $aui-color-black !default;
 $aui-dropdown-arrow-color: $aui-field-placeholder-color !default;
 $aui-dropdown-dirty-arrow-color: $aui-dropdown-color !default;
 $aui-dropdown-panel-background: darken($aui-color-white, 10%) !default;
@@ -37,6 +37,7 @@ $aui-dropdown-option-hover-background: rgba(#000, 0.10) !default;
     width: 100%;
     padding-right: #{rem($aui-dropdown-arrow-width) + unit(2)};
     min-height: $aui-field-default-height;
+    font-family: $aui-font-default;
     font-size: inherit;
     font-weight: $aui-font-weight-normal;
     line-height: inherit;
@@ -106,18 +107,41 @@ $aui-dropdown-option-hover-background: rgba(#000, 0.10) !default;
     transition-duration: $aui-field-transition-duration;
   }
 
-  &__description,
-  &__error {
+  &__description {
     display: block;
     color: $aui-dropdown-secondary-color;
     transition: color $aui-field-transition-duration linear;
-    margin-top: unit(2);
-    font-size: rem(13);
+    margin-top: unit(3.5);
+    font-size: rem(12);
     line-height: $aui-field-error-line-height;
   }
 
+  // &__error {
+  //   color: $aui-field-error-color;
+  // }
+
   &__error {
+    display: flex;
+    align-items: center;
+    line-height: $aui-field-error-line-height;
+    margin-top: unit(3.5);
+    font-size: rem(13);
     color: $aui-field-error-color;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      margin-right: rem(16px);
+      width: 40px;
+      height: 24px;
+      background: url('data:image/svg+xml,#{aui-svg-caution($aui-field-error-color)}') center center no-repeat;
+
+      @include aui-respond-to('large') {
+        margin-right: unit(2);
+        width: 24px;
+        height: 24px;
+      }
+    }
   }
 
   &__panel {

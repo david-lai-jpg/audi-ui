@@ -1,15 +1,19 @@
-$aui-indicator-color: rgba(#000, 0.2) !default;
-$aui-indicator-color-hover: rgba(#000, 0.5) !default;
-$aui-indicator-color-active: rgba(#000, 0.8) !default;
+$aui-indicator-color: $aui-color-gray80 !default;
+$aui-indicator-color-hover: $aui-color-gray40 !default;
+$aui-indicator-color-active: $aui-color-black !default;
 
-$aui-indicator-dot-width: unit(5) !default;
-$aui-indicator-height: unit(2) !default;
+$aui-indicator-dot-width: 32px !default;
+$aui-indicator-dot-spacing: 4px !default;
+$aui-indicator-height: 4px !default;
+$aui-indicator-action-height: 2px !default;
+$aui-indicator-trigger-width: 40px !default;
+$aui-indicator-trigger-height: 40px !default;
 
 .aui-indicator {
   display: inline-block;
   position: relative;
   font-family: serif;
-  height: $aui-indicator-height;
+  margin-left: -$aui-indicator-dot-spacing;
   line-height: $aui-indicator-height;
 
   &__items {
@@ -21,16 +25,27 @@ $aui-indicator-height: unit(2) !default;
   &__item {
     float: left;
     margin-left: unit(1);
+  }
 
-    &:first-child {
-      margin-left: 0;
+  &__trigger {
+    display: flex;
+    align-items: center;
+    width: $aui-indicator-trigger-width;
+    height: $aui-indicator-trigger-height;
+    padding: 0 $aui-indicator-dot-spacing 0 0;
+
+    &:hover {
+      .aui-indicator__dot {
+        background: $aui-indicator-color-hover;
+      }
     }
   }
 
-  &__action {
+  &__dot {
+    pointer-events: none;
     display: block;
     width: $aui-indicator-dot-width;
-    height: $aui-indicator-height;
+    height: $aui-indicator-action-height;
     overflow: hidden;
     text-indent: 100%;
     white-space: nowrap;
@@ -39,29 +54,26 @@ $aui-indicator-height: unit(2) !default;
     transition: background 0.15s linear;
   }
 
-  &__action,
-  &__action:visited {
+  &__dot,
+  &__dot:visited {
     background: $aui-indicator-color;
   }
 
-  &__action:hover {
-    background: $aui-indicator-color-hover;
-  }
-
   &__indicator {
-    pointer-events: none;
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: calc(50% - 1px);
+    left: $aui-indicator-dot-spacing;
+    transform: translate(0, -50%);
     width: $aui-indicator-dot-width;
-    height: 100%;
+    height: $aui-indicator-height;
     background: $aui-indicator-color-active;
     z-index: 1;
     transition: left 0.3s $aui-easing;
+    pointer-events: none;
   }
 
-  &--shadow &__action {
-    box-shadow: 0 0 8px rgba(#000, 0.5);
+  &--shadow &__dot {
+    box-shadow: 0 0 8px $aui-color-gray40;
   }
 }

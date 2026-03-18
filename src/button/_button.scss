@@ -1,16 +1,18 @@
-$aui-button-font-size: 15 !default;
+$aui-button-font-size: 16 !default;
 $aui-button-font-size-rem: rem($aui-button-font-size) !default;
-$aui-button-icon-margin: 8 !default;
+$aui-button-icon-margin: 16 !default;
 $aui-button-floating-offset-x: 1.5rem !default;
 $aui-button-floating-offset-y: 1.5rem !default;
 $aui-button-color: $aui-color-black !default;
 $aui-button-color-hover: $aui-color-gray30 !default;
+$aui-button-color-disabled: $aui-color-gray70 !default;
 $aui-button-color-primary: $aui-color-white !default;
 $aui-button-border-color: $aui-color-black !default;
 $aui-button-border-color-hover: $aui-color-gray50 !default;
 $aui-button-background: $aui-color-black !default;
-$aui-button-background-hover: $aui-color-gray20 !default;
-$aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-size) !default;
+$aui-button-background-hover: $aui-color-gray30 !default;
+$aui-button-padding: em(16, $aui-button-font-size) 0 em(16, $aui-button-font-size) 0 !default;
+$aui-button-stretch-max: 767px !default;
 
 .aui-button {
   &.is-active,
@@ -32,12 +34,13 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
     font-family: inherit;
     font-size: $aui-button-font-size-rem;
     font-weight: $aui-font-weight-normal;
+    //line-height: unit(4.8);
     line-height: unit(6);
     text-align: center;
     text-decoration: none;
     white-space: normal;
     vertical-align: middle;
-    transition: all 0.3s $aui-easing;
+    transition: all 250ms $aui-easing;
     @include aui-remove-tap-highlight;
   }
 
@@ -54,7 +57,6 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
   &.is-disabled,
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.30;
   }
 
   &--bold {
@@ -64,21 +66,30 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
   &--padded,
   &--primary,
   &--secondary {
-    padding-left: em($aui-rem-base * 2, $aui-button-font-size);
-    padding-right: em($aui-rem-base * 2, $aui-button-font-size);
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   &--icon,
   &--primary,
   &--secondary {
     &:focus {
-      @include shadow-focus;
+    //  @include shadow-focus; // adjusted to react library
     }
 
     &.is-disabled,
     &:disabled,
     &:hover {
       box-shadow: none;
+    }
+  }
+
+  &--round {
+    &.is-disabled,
+    &:disabled {
+      color: $aui-button-color-disabled;
+      stroke: $aui-button-color-disabled;
+      fill: $aui-button-color-disabled;
     }
   }
 
@@ -103,9 +114,11 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
 
     &.is-disabled,
     &:disabled {
-      color: rgba(#fff, 0.5);
-      stroke: rgba(#fff, 0.5);
-      fill: rgba(#fff, 0.5);
+      color: $aui-color-white;
+      stroke: $aui-color-white;
+      fill: $aui-color-white;
+      border-color: $aui-button-color-disabled !important;
+      background-color: $aui-button-color-disabled !important;
     }
 
     &,
@@ -128,6 +141,12 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
     &:disabled {
       border-color: $aui-button-border-color;
     }
+
+    &.is-disabled,
+    &:disabled {
+      color: $aui-button-color-disabled !important;
+      border-color: $aui-button-color-disabled !important;
+    }
   }
 
   &--text {
@@ -149,9 +168,16 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
       transform: translateX(5px);
     }
 
+    &:disabled {
+      .aui-button__text {
+        color: $aui-button-color-disabled;
+      }
+    }
+
     &.is-disabled .aui-button__text::after,
     &:disabled .aui-button__text::after {
       transform: none;
+      background-image: url('data:image/svg+xml,#{aui-svg-arrow($aui-button-color-disabled)}');
     }
   }
 
@@ -199,6 +225,7 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
 
   &--stretched {
     width: 100%;
+    max-width: $aui-button-stretch-max;
   }
 
   &--sticky {
@@ -206,6 +233,11 @@ $aui-button-padding: em(13, $aui-button-font-size) 0 em(12, $aui-button-font-siz
     left: 0;
     bottom: 0;
     @include shadow;
+  }
+
+  &--centered {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &--floating {
